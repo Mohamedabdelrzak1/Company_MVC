@@ -11,7 +11,7 @@ namespace Company.BLL.Interface
     {
         IEnumerable<Department> GetAll();
 
-        Department? Get(int Id);
+        Department Get(int Id);
 
         int Add(Department model);
         int Update(Department model);
