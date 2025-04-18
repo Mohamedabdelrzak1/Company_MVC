@@ -2,27 +2,53 @@
 @{
     ViewData["Title"] = "Edit";
 }
+<div class="container mt-5">
+    <div class="card shadow rounded">
+        <div class="card-header bg-warning text-white">
+            <h3><i class="bi bi-pencil-square"></i> Edit Department</h3>
+        </div>
+        <div class="card-body">
+            <form asp-action="Edit">
+                <input type="hidden" asp-for="Id" />
 
-<h1>Edit Department</h1>
-<br />
-<br />
+                <div class="mb-3">
+                    <label asp-for="Code" class="form-label fw-bold">
+                        <i class="bi bi-123"></i> Code
+                    </label>
+                    <input asp-for="Code" class="form-control" />
+                    <span asp-validation-for="Code" class="text-danger"></span>
+                </div>
 
-<form asp-action="Edit">
-    <div class="my-3">
-        <label asp-for="Code" class="col-form-label"></label>
-        <input asp-for="Code" class="form-control" />
-        <span asp-validation-for="Code" class="text-danger"></span>
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label fw-bold">
+                        <i class="bi bi-tag"></i> Name
+                    </label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="CreateAt" class="form-label fw-bold">
+                        <i class="bi bi-calendar-date"></i> Create At
+                    </label>
+                    <input asp-for="CreateAt" class="form-control" type="datetime-local" />
+                    <span asp-validation-for="CreateAt" class="text-danger"></span>
+                </div>
+
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-warning text-white">
+                        <i class="bi bi-save"></i> Save
+                    </button>
+                    <a asp-action="Index" class="btn btn-secondary">
+                        <i class="bi bi-arrow-left-circle"></i> Back To List
+                    </a>
+                </div>
+            </form>
+        </div>
     </div>
-    <div class="my-3">
-        <label asp-for="Name" class="col-form-label"></label>
-        <input asp-for="Name" class="form-control" />
-        <span asp-validation-for="Name" class="text-danger"></span>
-    </div>
-    <div class="my-3">
-        <label asp-for="CreateAt" class="col-form-label"></label>
-        <input asp-for="CreateAt" class="form-control" />
-    </div>
-    <input type="submit" value="Save" class="btn btn-warning" />
-    <a asp-controller="Department" asp-action="Index" class="btn btn-light">Back To List</a>
-</form>
+</div>
+
+@section ValidationSection {
+    <partial name="_ValidationScriptsPartial" />
+}
 

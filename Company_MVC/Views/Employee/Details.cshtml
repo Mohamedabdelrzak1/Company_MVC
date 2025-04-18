@@ -1,0 +1,86 @@
+﻿@model Employee
+@{
+    ViewData["Title"] = "Employee Details";
+}
+
+<div class="container mt-5">
+    <div class="card shadow rounded border-info">
+        <div class="card-header bg-info text-white">
+            <h3><i class="bi bi-eye"></i> Employee Details</h3>
+        </div>
+        <div class="card-body">
+
+            <div class="mb-3">
+                <label class="form-label fw-bold">
+                    <i class="bi bi-person"></i> Name
+                </label>
+                <input class="form-control bg-light" value="@Model.Name" readonly />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-bold">
+                    <i class="bi bi-123"></i> Age
+                </label>
+                <input class="form-control bg-light" value="@Model.Age" readonly />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-bold">
+                    <i class="bi bi-envelope"></i> Email
+                </label>
+                <input class="form-control bg-light" value="@Model.Email" readonly />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-bold">
+                    <i class="bi bi-geo-alt"></i> Address
+                </label>
+                <input class="form-control bg-light" value="@Model.Address" readonly />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-bold">
+                    <i class="bi bi-telephone"></i> Phone
+                </label>
+                <input class="form-control bg-light" value="@Model.Phone" readonly />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-bold">
+                    <i class="bi bi-cash"></i> Salary
+                </label>
+                <input class="form-control bg-light" value="@Model.Salary" readonly />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-bold">
+                    <i class="bi bi-calendar-event"></i> Hiring Date
+                </label>
+                <input class="form-control bg-light" value="@Model.HiringDate.ToShortDateString()" readonly />
+            </div>
+
+            <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" @(Model.IsActive ? "checked" : "") disabled />
+                <label class="form-check-label fw-bold">
+                    <i class="bi bi-check-circle"></i> Active
+                </label>
+            </div>
+
+            <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" @(Model.IsDeleted ? "checked" : "") disabled />
+                <label class="form-check-label fw-bold">
+                    <i class="bi bi-trash"></i> Deleted
+                </label>
+            </div>
+
+            <div class="d-flex gap-2">
+                <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-success">
+                    <i class="bi bi-pencil-square"></i> Edit
+                </a>
+                <a asp-action="Index" class="btn btn-secondary">
+                    <i class="bi bi-arrow-left-circle"></i> Back To List
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

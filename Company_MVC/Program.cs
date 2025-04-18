@@ -1,5 +1,7 @@
 using Company.BLL.Interface;
+using Company.BLL.Interfaces;
 using Company.BLL.Repository;
+using Company.BLL.Repositorys;
 using Company.DAL.Data.Context;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,6 +16,7 @@ namespace Company_MVC
             // Add services to the container.
             builder.Services.AddControllersWithViews(); 
             builder.Services.AddScoped<IDepartmentRepository,DepartmentRepository>();  //Allow DI  for DepartmentRepository 
+            builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();  //Allow DI  for DepartmentRepository 
             builder.Services.AddDbContext<CompanyDbContext>(option =>
                 {
                     option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
