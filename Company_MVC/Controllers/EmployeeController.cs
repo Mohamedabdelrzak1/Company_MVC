@@ -1,54 +1,60 @@
 ﻿using Company.BLL.Interface;
-using Company.BLL.Repository;
+using Company.BLL.Interfaces;
 using Company.DAL.Model;
+using Company.DAL.Models;
 using Company_MVC.Dtos;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.DotNet.Scaffolding.Shared.Messaging;
 
 namespace Company_MVC.Controllers
 {
-
-   
-    public class DepartmentController : Controller
+    public class EmployeeController : Controller
     {
-        private readonly IDepartmentRepository _departmentRepository; //NULL
+        private readonly IEmployeeRepository _employeeRepository; //NULL
 
         //Ask CLR Create object From IDepartmentRepository
-        public DepartmentController(IDepartmentRepository departmentRepository)
+        public EmployeeController(IEmployeeRepository employeeRepository)
         {
-            _departmentRepository = departmentRepository;
+            _employeeRepository = employeeRepository;
         }
 
 
         [HttpGet] //Get : Department/index
         public IActionResult Index()
         {
-         
-          var departments =  _departmentRepository.GetAll();
 
-            return View(departments);
+            var employees = _employeeRepository.GetAll();
+
+            return View(employees);
         }
 
         [HttpGet]
         public IActionResult Create()
-        { 
+        {
             return View();
         }
 
         [HttpPost]
-        public IActionResult Create(CreateDepartmentDto model)
-        { 
+        public IActionResult Create(CreateEmployeeDto model)
+        {
             if (ModelState.IsValid) //Server Side Validation 
             {
-                var department = new Department()
+                var employee = new Employee()
                 {
-                    Code = model.Code,
+                    
                     Name = model.Name,
-                    CreateAt = model.CreateAt
+                    Address = model.Address,
+                    CreateAt = model.CreateAt,
+                    Email = model.Email,
+                    Phone = model.Phone,
+                    IsActive = model.IsActive,
+                    IsDeleted = model.IsDeleted,
+                    HiringDate = model.HiringDate,
+                    Age = model.Age,
+                    Salary = model.Salary
 
                 };
-                var count = _departmentRepository.Add(department);
-                if(count>0)
+                var count = _employeeRepository.Add(employee);
+                if (count > 0)
                 {
                     return RedirectToAction(nameof(Index));
                 }
@@ -57,17 +63,17 @@ namespace Company_MVC.Controllers
         }
 
         [HttpGet]
-        public IActionResult Details (int? Id , string  viewName = "Details")
+        public IActionResult Details(int? Id, string viewName = "Details")
         {
             if (Id is null) return BadRequest("Invaled Id"); //Satues code = 400 
 
-            var department =  _departmentRepository.Get(Id.Value);
+            var employee = _employeeRepository.Get(Id.Value);
 
-            if (department is null) return NotFound(new { SatuesCode=404 ,Message=$"Department With Id :{Id} is not found"});
+            if (employee is null) return NotFound(new { SatuesCode = 404, Message = $"Department With Id :{Id} is not found" });
 
-            return View(viewName, department);
+            return View(viewName, employee);
         }
-        
+
 
 
         [HttpGet]
@@ -79,14 +85,14 @@ namespace Company_MVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit([FromRoute] int id, Department department)
+        public IActionResult Edit([FromRoute] int id, Employee employee)
         {
 
             if (ModelState.IsValid) //Server Side Validation 
             {
-                if (id == department.Id)
+                if (id == employee.Id)
                 {
-                    var count = _departmentRepository.Update(department);
+                    var count = _employeeRepository.Update(employee);
                     if (count > 0)
                     {
                         return RedirectToAction(nameof(Index));
@@ -95,7 +101,7 @@ namespace Company_MVC.Controllers
 
             }
 
-            return View(department);
+            return View(employee);
         }
 
 
@@ -107,15 +113,15 @@ namespace Company_MVC.Controllers
 
 
         [HttpPost]
-     
-        public IActionResult Delete([FromRoute] int id, Department department)
+
+        public IActionResult Delete([FromRoute] int id, Employee employee)
         {
 
             if (ModelState.IsValid) //Server Side Validation 
             {
-                if (id == department.Id)
+                if (id == employee.Id)
                 {
-                    var count = _departmentRepository.Delete(department);
+                    var count = _employeeRepository.Delete(employee);
                     if (count > 0)
                     {
                         return RedirectToAction(nameof(Index));
@@ -124,9 +130,8 @@ namespace Company_MVC.Controllers
 
             }
 
-            return View(department);
+            return View(employee);
         }
 
     }
-
 }

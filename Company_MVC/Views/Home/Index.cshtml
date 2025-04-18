@@ -2,7 +2,55 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        background: linear-gradient(145deg, #0f0f0f, #1a1a1a);
+        overflow-x: hidden;
+        position: relative;
+    }
+
+    .glow-border {
+        position: absolute;
+        top: -200px;
+        left: -200px;
+        width: 150%;
+        height: 150%;
+        background: #00ffff;
+        opacity: 0.05;
+        filter: blur(150px);
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    .content {
+        position: relative;
+        z-index: 1;
+        padding: 5rem;
+        color: white;
+    }
+</style>
+
+<!-- توهج يغطي الصفحة كلها -->
+
+<!-- تأثير خلفي سيان متوهج -->
+<div style="position: absolute; top: -200px; left: -200px; width: 600px; height: 600px; background: #00ffff; opacity: 0.1; filter: blur(100px); border-radius: 50%;"></div>
+
+
+<!-- محتوى الصفحة -->
+<div class="content">
+    <h1 class="display-3 fw-bold mb-4" style="letter-spacing: 1px;">
+        Welcome to <span style="color:#00ffff;">Company</span>
+    </h1>
+    <p class="lead text-secondary mb-5" style="max-width: 600px;">
+        We are a growing company focused on organizing and managing departments and employees efficiently.
+        Our simple and intuitive dashboard is designed to help small businesses like ours keep track of operations, teams, and tasks — all in one place.
+    </p>
+    <a asp-controller="Home" asp-action="SystemOverview" class="btn btn-lg btn-outline-info rounded-pill px-5 py-3 fw-semibold shadow">
+        Explore Now
+    </a>
+
+    </a>
 </div>

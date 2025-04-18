@@ -1,4 +1,5 @@
 ﻿using Company.DAL.Model;
+using Company.DAL.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -29,6 +30,7 @@ namespace Company.DAL.Data.Context
         //    optionsBuilder.UseSqlServer("Server=.;Database=CompanyMvc;Trusted_Connection = True; TrustServerCertificate = True");
         //}
         public DbSet<Department> Departments { get; set; }
+        public DbSet<Employee> Employees { get; set; }
 
     }
 }

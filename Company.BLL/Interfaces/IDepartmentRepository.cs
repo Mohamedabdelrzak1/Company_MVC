@@ -1,4 +1,5 @@
-﻿using Company.DAL.Model;
+﻿using Company.BLL.Interfaces;
+using Company.DAL.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,15 +8,15 @@ using System.Threading.Tasks;
 
 namespace Company.BLL.Interface
 {
-    public interface IDepartmentRepository
+    public interface IDepartmentRepository : IGenericRepository<Department>
     {
-        IEnumerable<Department> GetAll();
+        //IEnumerable<Department> GetAll();
 
-        Department? Get(int Id);
+        //Department? Get(int Id);
 
-        int Add(Department model);
-        int Update(Department model);
-        int Delete(Department model);
+        //int Add(Department model);
+        //int Update(Department model);
+        //int Delete(Department model);
 
     }
 }

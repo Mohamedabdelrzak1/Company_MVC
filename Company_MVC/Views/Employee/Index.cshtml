@@ -1,0 +1,89 @@
+﻿@model IEnumerable<Employee>
+
+@{
+    ViewData["Title"] = "All Employees";
+}
+
+
+
+<div class="mt-5">
+    <div class="card shadow rounded-4 p-4 " style="width: fit-content;">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3 class="fw-bold">All Employees</h3>
+
+        <a asp-controller="Employee" asp-action="Create" class="btn btn-primary">+ Create Employee</a>
+    </div>
+    <br />
+    @if (Model.Any())
+    {
+
+
+           
+                
+    <table class="table table-hover text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th>@Html.DisplayNameFor(e => e.Name)</th>
+                    <th>@Html.DisplayNameFor(e => e.Age)</th>
+                    <th>@Html.DisplayNameFor(e => e.Email)</th>
+                    <th>@Html.DisplayNameFor(e => e.Address)</th>
+                    <th>@Html.DisplayNameFor(e => e.Phone)</th>
+                    <th>@Html.DisplayNameFor(e => e.Salary)</th>
+                    <th>@Html.DisplayNameFor(e => e.IsActive)</th>
+                    <th>@Html.DisplayNameFor(e => e.IsDeleted)</th>
+                    <th>@Html.DisplayNameFor(e => e.HiringDate)</th>
+                    <th>@Html.DisplayNameFor(e => e.CreateAt)</th>
+                    <th>Details</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var employee in Model)
+                {
+                    <tr>
+                        <td>@employee.Name</td>
+                        <td>@employee.Age</td>
+                        <td>@employee.Email</td>
+                        <td>@employee.Address</td>
+                        <td>@employee.Phone</td>
+                        <td>@employee.Salary</td>
+                        <td>
+                            <span class="badge @(employee.IsActive ? "bg-success" : "bg-secondary")">
+                                @(employee.IsActive ? "Active" : "Inactive")
+                            </span>
+                        </td>
+                        <td>
+                            <span class="badge @(employee.IsDeleted ? "bg-danger" : "bg-info")">
+                                @(employee.IsDeleted ? "Deleted" : "Available")
+                            </span>
+                        </td>
+                        <td>@employee.HiringDate.ToShortDateString()</td>
+                        <td>@employee.CreateAt.ToString("g")</td>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@employee.Id" class="btn btn-warning text-white">
+                                <i class="bi bi-eye"></i> Details
+                            </a>
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@employee.Id" class="btn btn-success">
+                                <i class="bi bi-pencil-square"></i> Update
+                            </a>
+                        </td>
+                        <td>
+                            <a asp-action="Delete" asp-route-id="@employee.Id" class="btn btn-danger">
+                                <i class="bi bi-trash"></i> Delete
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="alert alert-info shadow-sm rounded-3 mt-3 text-center">
+            <h5 class="fw-semibold mb-0">There is no employee <span class="text-muted">😢</span></h5>
+        </div>
+    }
+</div>
