@@ -1,4 +1,5 @@
 ﻿using Company.BLL.Interface;
+using Company.BLL.Interfaces;
 using Company.BLL.Repository;
 using Company.DAL.Model;
 using Company_MVC.Dtos;
@@ -11,12 +12,13 @@ namespace Company_MVC.Controllers
    
     public class DepartmentController : Controller
     {
-        private readonly IDepartmentRepository _departmentRepository; //NULL
+        private readonly IUnitOfWork _unitOfWork;
 
-        //Ask CLR Create object From IDepartmentRepository
-        public DepartmentController(IDepartmentRepository departmentRepository)
+
+        //Ask CLR Create object From UnitOfWork
+        public DepartmentController(IUnitOfWork unitOfWork)
         {
-            _departmentRepository = departmentRepository;
+            _unitOfWork = unitOfWork;
         }
 
 
@@ -24,7 +26,7 @@ namespace Company_MVC.Controllers
         public IActionResult Index()
         {
          
-          var departments =  _departmentRepository.GetAll();
+          var departments = _unitOfWork.DepartmentRepository.GetAll();
 
             return View(departments);
         }
@@ -47,9 +49,11 @@ namespace Company_MVC.Controllers
                     CreateAt = model.CreateAt
 
                 };
-                var count = _departmentRepository.Add(department);
+                var count = _unitOfWork.DepartmentRepository.Add(department);
                 if(count>0)
                 {
+                    TempData["Message"] = "Employee created successfully!";
+                    TempData["MessageType"] = "create";
                     return RedirectToAction(nameof(Index));
                 }
             }
@@ -61,7 +65,7 @@ namespace Company_MVC.Controllers
         {
             if (Id is null) return BadRequest("Invaled Id"); //Satues code = 400 
 
-            var department =  _departmentRepository.Get(Id.Value);
+            var department = _unitOfWork.DepartmentRepository.Get(Id.Value);
 
             if (department is null) return NotFound(new { SatuesCode=404 ,Message=$"Department With Id :{Id} is not found"});
 
@@ -82,18 +86,20 @@ namespace Company_MVC.Controllers
         public IActionResult Edit([FromRoute] int id, Department department)
         {
 
-            if (ModelState.IsValid) //Server Side Validation 
-            {
+            
                 if (id == department.Id)
                 {
-                    var count = _departmentRepository.Update(department);
+                    var count = _unitOfWork.DepartmentRepository.Update(department);
                     if (count > 0)
                     {
-                        return RedirectToAction(nameof(Index));
+                    TempData["Message"] = "Employee updated successfully!";
+                    TempData["MessageType"] = "edit";
+
+                    return RedirectToAction(nameof(Index));
                     }
                 }
 
-            }
+            
 
             return View(department);
         }
@@ -111,18 +117,19 @@ namespace Company_MVC.Controllers
         public IActionResult Delete([FromRoute] int id, Department department)
         {
 
-            if (ModelState.IsValid) //Server Side Validation 
-            {
+           
                 if (id == department.Id)
                 {
-                    var count = _departmentRepository.Delete(department);
+                    var count = _unitOfWork.DepartmentRepository.Delete(department);
                     if (count > 0)
                     {
-                        return RedirectToAction(nameof(Index));
+                    TempData["Message"] = "Employee deleted successfully!";
+                    TempData["MessageType"] = "delete";
+                    return RedirectToAction(nameof(Index));
                     }
                 }
 
-            }
+           
 
             return View(department);
         }

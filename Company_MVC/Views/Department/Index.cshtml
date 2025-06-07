@@ -13,7 +13,35 @@
             <div class="d-flex justify-content-between align-items-center mb-3" >
 
                 <h3 class="fw-bold mb-0">All Departments</h3>
-               
+                @if (TempData["Message"] is string msg)
+            {
+                var type = TempData["MessageType"]?.ToString() ?? "info";
+                var alertClass = type switch
+                {
+                    "create" => "success",
+                    "edit" => "warning",
+                    "delete" => "danger",
+                    _ => "info"
+                };
+                var icon = type switch
+                {
+                    "create" => "bi-check-circle-fill",
+                    "edit" => "bi-pencil-fill",
+                    "delete" => "bi-trash-fill",
+                    _ => "bi-info-circle-fill"
+                };
+
+                <div class="alert alert-@alertClass alert-dismissible fade show m-3 rounded-3 shadow" role="alert">
+                    <i class="bi @icon me-2"></i>
+                    @msg
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+
+                @* Remove message after showing *@
+                TempData.Remove("Message");
+                TempData.Remove("MessageType");
+            }
+
                 <a asp-controller="Department" asp-action="Create" class="btn btn-primary">+ Create Department</a>
                 
             </div>

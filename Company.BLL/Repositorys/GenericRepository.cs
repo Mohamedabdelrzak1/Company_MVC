@@ -2,6 +2,7 @@
 using Company.DAL.Data.Context;
 using Company.DAL.Model;
 using Company.DAL.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,10 +23,20 @@ namespace Company.BLL.Repositorys
         }
         public IEnumerable<T> GetAll()
         {
-            return _context.Set<T>().ToList();
+            if (typeof(T) == typeof(Employee)) //حل مؤقت 
+            {
+                return (IEnumerable<T>)_context.Employees.Include(E => E.Department).ToList();
+            }
+
+                return _context.Set<T>().ToList();
         }
         public T? Get(int Id)
         {
+            if (typeof(T) == typeof(Employee))
+            {
+                return _context.Employees.Include(E => E.Department).FirstOrDefault(E => E.Id == Id) as T;
+            }
+
             return _context.Set<T>().Find(Id);
         }
         public int Add(T model)

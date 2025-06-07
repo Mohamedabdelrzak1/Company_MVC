@@ -33,5 +33,8 @@ namespace Company_MVC.Dtos
         [DisplayName("Date Of Create")]
         public DateTime CreateAt { get; set; }
 
+
+        public int? DepartmentId { get; set; }
+
     }
 }

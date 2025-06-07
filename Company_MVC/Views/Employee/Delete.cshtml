@@ -3,6 +3,7 @@
     ViewData["Title"] = "Delete";
 }
 
+
 <div class="container mt-5">
     <div class="card shadow rounded border-danger">
         <div class="card-header bg-danger text-white">
@@ -61,7 +62,12 @@
                     </label>
                     <input asp-for="HiringDate" class="form-control bg-light" readonly />
                 </div>
-
+                <div class="mb-3">
+                    <label asp-for="CreateAt" class="form-label fw-bold">
+                        <i class="bi bi-calendar-event"></i> Hiring Date
+                    </label>
+                    <input asp-for="CreateAt" class="form-control bg-light" readonly />
+                </div>
                 <div class="form-check mb-3">
                     <input asp-for="IsActive" class="form-check-input" type="checkbox" disabled />
                     <label asp-for="IsActive" class="form-check-label fw-bold">

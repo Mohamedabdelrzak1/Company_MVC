@@ -9,7 +9,60 @@
 <div class="mt-5">
     <div class="card shadow rounded-4 p-4 " style="width: fit-content;">
         <div class="d-flex justify-content-between align-items-center mb-3">
-        <h3 class="fw-bold">All Employees</h3>
+            <h3 class="fw-bold m-0">All Employees</h3>
+            <form asp-action="Index" method="get" class="mb-4 mx-auto" style="max-width: 450px;">
+                <div class="input-group shadow-lg rounded-4 overflow-hidden border border-2 border-light bg-white">
+                    <span class="input-group-text bg-white border-0 shadow-sm">
+                        <i class="bi bi-search text-muted"></i>
+                    </span>
+
+                    <input type="text" name="SearchInput"
+                           class="form-control border-0 shadow-none"
+                           style="box-shadow: inset 2px 2px 5px rgba(0,0,0,0.1);"
+                           placeholder="Search By Name"
+                           value="@Context.Request.Query["SearchInput"]" />
+
+                    <button class="btn btn-success px-4 fw-semibold"
+                            style="
+                    box-shadow: 0 4px 0 #0c7c43, 0 6px 10px rgba(0,0,0,0.2);
+                    border: none;
+                    transition: all 0.2s ease-in-out;
+                "
+                            onmousedown="this.style.transform='translateY(2px)'; this.style.boxShadow='0 2px 0 #0c7c43, 0 3px 6px rgba(0,0,0,0.2)';"
+                            onmouseup="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 0 #0c7c43, 0 6px 10px rgba(0,0,0,0.2)';">
+                        <i class="bi bi-search me-1"></i> Search
+                    </button>
+                </div>
+            </form>
+            @if (TempData["Message"] is string msg)
+            {
+                var type = TempData["MessageType"]?.ToString() ?? "info";
+                var alertClass = type switch
+                {
+                    "create" => "alert-success",
+                    "edit" => "alert-warning",
+                    "delete" => "alert-danger",
+                    _ => "alert-info"
+                };
+                var icon = type switch
+                {
+                    "create" => "bi-check-circle-fill",
+                    "edit" => "bi-pencil-fill",
+                    "delete" => "bi-trash-fill",
+                    _ => "bi-info-circle-fill"
+                };
+
+                <div id="tempAlert" class="alert @alertClass alert-dismissible fade show rounded-3 shadow-sm mx-auto mt-3" style="max-width: 450px;" role="alert">
+                    <i class="bi @icon me-2"></i>
+                    @msg
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+
+                TempData.Remove("Message");
+                TempData.Remove("MessageType");
+            }
+
+
 
         <a asp-controller="Employee" asp-action="Create" class="btn btn-primary">+ Create Employee</a>
     </div>
@@ -33,6 +86,7 @@
                     <th>@Html.DisplayNameFor(e => e.IsDeleted)</th>
                     <th>@Html.DisplayNameFor(e => e.HiringDate)</th>
                     <th>@Html.DisplayNameFor(e => e.CreateAt)</th>
+                    <th>@Html.DisplayNameFor(e => e.DepartmentId)</th>
                     <th>Details</th>
                     <th>Update</th>
                     <th>Delete</th>
@@ -60,6 +114,7 @@
                         </td>
                         <td>@employee.HiringDate.ToShortDateString()</td>
                         <td>@employee.CreateAt.ToString("g")</td>
+                            <td>@employee.Department?.Name </td>
                         <td>
                             <a asp-action="Details" asp-route-id="@employee.Id" class="btn btn-warning text-white">
                                 <i class="bi bi-eye"></i> Details

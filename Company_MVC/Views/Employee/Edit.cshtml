@@ -61,6 +61,27 @@
                     <input asp-for="HiringDate" class="form-control" type="date" />
                 </div>
 
+                <div class="mb-3">
+                    <label asp-for="CreateAt" class="form-label fw-bold">
+                        <i class="bi bi-calendar-event"></i> CreateAt
+                    </label>
+                    <input asp-for="CreateAt" class="form-control" type="date" />
+                </div>
+
+                <!-- 🔽 قسم اختيار القسم -->
+                <div class="mb-3">
+                    <label asp-for="DepartmentId" class="form-label fw-bold d-flex align-items-center text-dark">
+                        <i class="bi bi-diagram-3-fill me-2"></i>
+                        @Html.DisplayNameFor(m => m.DepartmentId)
+                    </label>
+
+                    <select asp-for="DepartmentId" class="form-select" asp-items="@(ViewData["DepartmentList"] as SelectList)">
+                        <option value="">-- Select Department --</option>
+                    </select>
+
+                    <span asp-validation-for="DepartmentId" class="text-danger"></span>
+                </div>
+
                 <div class="form-check mb-3">
                     <input asp-for="IsActive" class="form-check-input" type="checkbox" />
                     <label asp-for="IsActive" class="form-check-label fw-bold">
@@ -88,9 +109,6 @@
     </div>
 </div>
 
-
 @section ValidationSection {
     <partial name="_ValidationScriptsPartial" />
 }
-
-
