@@ -1,0 +1,175 @@
+﻿@model SignInDto
+
+@{
+    ViewData["Title"] = "SignIn";
+    Layout = "~/Views/Shared/_AuthLayout.cshtml";
+}
+
+<div class="signIn-">
+    <div asp-validation-summary="All" class="my-validation-error"></div>
+
+    <form asp-action="SignIn" method="post">
+
+        <input asp-for="Email" placeholder="Email" class="form-control" />
+        <span asp-validation-for="Email" class="my-validation-error"></span>
+
+        <div class="password-wrapper">
+            <input asp-for="Password" placeholder="Password" type="password" id="PasswordInput" class="form-control password-field" />
+            <span class="toggle-password" onclick="togglePassword()">
+                <i class="fa fa-eye"></i>
+            </span>
+        </div>
+        <span asp-validation-for="Password" class="my-validation-error"></span>
+
+        <label class="checkbox-label">
+            <input asp-for="RememberMe" type="checkbox" />
+            Remember Me
+        </label>
+        <span asp-validation-for="RememberMe" class="my-validation-error"></span>
+        <button type="submit" class="signin-btn">
+            <span class="btn-icon"><i class="fas fa-sign-in-alt"></i></span>
+            <span class="btn-text">Sign In</span>
+        </button>
+
+    </form>
+
+    <!-- زر تسجيل الدخول بجوجل منفصل -->
+    <div class="mt-3">
+        <a asp-action="AccessDenied" class="google-btn">
+            <i class="fab fa-google me-2"></i> Sign in with Google
+        </a>
+    </div>
+    <br />
+    <br />
+    <p class="mt-3 text-center fw-bold text-dark fs-5">Don't have an account? <a asp-action="SignUp" class="login-link">Sign up now</a></p>
+
+    <p class="mt-3 text-center fw-bold text-dark fs-5">
+        <a asp-action="ForgetPassword" class="login-link">Forget password?</a>
+    </p>
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
+
+<script>
+    function togglePassword() {
+        var passwordInput = document.getElementById('PasswordInput');
+        var icon = document.querySelector('.toggle-password i');
+
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            icon.classList.remove("fa-eye");
+            icon.classList.add("fa-eye-slash");
+        } else {
+            passwordInput.type = "password";
+            icon.classList.remove("fa-eye-slash");
+            icon.classList.add("fa-eye");
+        }
+    }
+</script>
+
+<style>
+    .password-wrapper {
+        position: relative;
+        width: 100%;
+    }
+
+        .password-wrapper .password-field {
+            padding-right: 45px;
+        }
+
+    .toggle-password {
+        position: absolute;
+        top: 50%;
+        right: 15px;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: #999;
+        font-size: 18px;
+    }
+
+    .google-btn {
+        display: inline-block;
+        width: 100%;
+        background: linear-gradient(to right, #ff4e50, #f9d423);
+        color: white;
+        font-weight: bold;
+        padding: 12px 20px;
+        text-align: center;
+        border-radius: 10px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+        text-decoration: none;
+        font-size: 15px;
+        transition: all 0.3s ease;
+    }
+
+        .google-btn:hover {
+            background: linear-gradient(to right, #ff3d3d, #ffd200);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .google-btn:active {
+            transform: scale(0.98);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+    .signin-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        padding: 12px 24px;
+        background: linear-gradient(to right, #007bff, #00c6ff);
+        color: #fff;
+        font-size: 16px;
+        font-weight: 600;
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0, 123, 255, 0.3);
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        cursor: pointer;
+    }
+
+        .signin-btn:hover {
+            background: linear-gradient(to right, #0056b3, #00aaff);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 123, 255, 0.4);
+        }
+
+        .signin-btn:active {
+            transform: scale(0.97);
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+        }
+
+    .btn-icon {
+        font-size: 18px;
+    }
+
+    .btn-text {
+        font-size: 16px;
+    }
+
+    .login-link {
+        color: #0056d2; /* أزرق أقوى من Bootstrap */
+        font-weight: 800; /* Bold جداً */
+        text-decoration: none;
+    }
+
+        .login-link:hover {
+            color: #003f9e; /* غامق عند الهوفر */
+            text-decoration: underline;
+        }
+
+
+
+</style>
+
+
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />

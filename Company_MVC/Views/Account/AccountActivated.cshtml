@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "AccountActivated";
+    Layout = "~/Views/Shared/_AuthLayout.cshtml";
+}
+
+<div style="font-family: Arial, sans-serif; text-align: center; padding: 40px;">
+
+    <img src="https://img.icons8.com/ios-filled/100/26e07f/email-open.png" alt="Email Verified"
+         style="margin: 20px auto;" width="80" />
+
+    <!-- ✅ هنا تم تصحيح مشكلة تداخل <p> -->
+    <p style="font-size: 16px; color: #555;">
+        <strong>Hello @ViewData["UserName"]</strong>,
+    </p>
+
+    <p style="font-size: 15px; color: #555; max-width: 400px; margin: auto;">
+        Thank you, your email has been verified. Your account is now active.<br />
+        Please use the link below to login to your account.
+    </p>
+
+    <br />
+
+    <a href="@Url.Action("SignIn", "Account")" style="
+        display: inline-block;
+        padding: 12px 25px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+    ">LOGIN TO YOUR ACCOUNT</a>
+
+    <br /><br />
+
+    <p style="font-size: 13px; color: #999;">
+        Thank you for choosing our platform.
+    </p>
+</div>

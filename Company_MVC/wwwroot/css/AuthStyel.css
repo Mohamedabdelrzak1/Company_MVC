@@ -1,0 +1,148 @@
+﻿/* Reset and Global Settings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f6f7fb;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    position: relative;
+    padding: 30px 0;
+}
+
+/* Shapes (Background Decoration) */
+.shape {
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    border-radius: 50px;
+    z-index: 1;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.shape-left {
+    top: -100px;
+    left: -100px;
+    transform: rotate(45deg);
+}
+
+.shape-right {
+    bottom: -100px;
+    right: -100px;
+    transform: rotate(45deg);
+}
+
+/* Container Style (Used for both Forms) */
+.container {
+    z-index: 10;
+    width: 100%;
+    max-width: 450px;
+    padding: 50px 40px;
+    background: #fff;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    border-radius: 20px;
+    text-align: center;
+    margin-top: 0;
+    position: relative;
+}
+
+/* Shared Heading Style */
+h2 {
+    margin-bottom: 25px;
+    font-weight: bold;
+    font-size: 26px; /* أصغر درجة */
+    color: #333;
+}
+
+/* Shared Input Fields */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 13px 16px; /* قليلاً أصغر مع الخط */
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 14px; /* أصغر درجة */
+    box-sizing: border-box;
+    outline: none;
+}
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="password"]:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 8px rgba(0, 123, 255, 0.1);
+    }
+
+/* Checkbox Styling */
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    font-size: 13px; /* أصغر درجة */
+    margin: 15px 0 20px 0;
+    color: #444;
+    justify-content: flex-start;
+}
+
+    .checkbox-label input {
+        margin-right: 10px;
+    }
+
+/* Validation Errors */
+.my-validation-error {
+    color: #dc3545;
+    font-size: 12px; /* أصغر درجة */
+    font-weight: bold;
+    margin: 5px 0 10px 0;
+    text-align: left;
+}
+
+/* Buttons Shared */
+button {
+    background: linear-gradient(135deg, #007bff, #00c6ff);
+    color: white;
+    border: none;
+    padding: 14px 24px; /* تصغير طفيف مع الخط */
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%;
+    margin-bottom: 20px;
+    font-size: 15px; /* أصغر درجة */
+    transition: background 0.3s ease;
+}
+
+    button:hover {
+        background: linear-gradient(135deg, #0056b3, #0096ff);
+    }
+
+/* Links */
+a {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 13px; /* أصغر درجة */
+}
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+
+
+/* Specific form classes for future customization */
+.signup-form {
+}
+
+.signin-form {
+}

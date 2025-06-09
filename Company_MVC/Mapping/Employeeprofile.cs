@@ -8,8 +8,8 @@ namespace Company_MVC.Mapping
     {
         public Employeeprofile()
         {
-            CreateMap<CreateEmployeeDto, Employee>().ReverseMap();
-            //CreateMap< Employee , CreateEmployeeDto>();
+            CreateMap<CreateEmployeeDto, Employee>().ReverseMap(); 
+            CreateMap<Employee, CreateEmployeeDto>();
         }
     }
 }

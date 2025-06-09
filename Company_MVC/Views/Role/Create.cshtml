@@ -1,0 +1,37 @@
+﻿@model RoleToReturnDto
+
+@{
+    ViewData["Title"] = "Create Role";
+}
+
+<div class="container mt-5">
+    <div class="card shadow rounded border-primary">
+        <div class="card-header bg-primary text-white">
+            <h3><i class="bi bi-plus-circle"></i> Create New Role</h3>
+        </div>
+        <div class="card-body">
+            <form asp-action="Create">
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label fw-bold">
+                        <i class="bi bi-person-badge"></i> Role Name
+                    </label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-plus-circle"></i> Create
+                    </button>
+                    <a asp-action="Index" class="btn btn-secondary">
+                        <i class="bi bi-arrow-left-circle"></i> Back To List
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section ValidationSection {
+    <partial name="_ValidationScriptsPartial" />
+}

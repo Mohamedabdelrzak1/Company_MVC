@@ -3,13 +3,15 @@ using Company.BLL.Interfaces;
 using Company.BLL.Repository;
 using Company.DAL.Model;
 using Company_MVC.Dtos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.DotNet.Scaffolding.Shared.Messaging;
+using System.Threading.Tasks;
 
 namespace Company_MVC.Controllers
 {
 
-   
+    [Authorize]
     public class DepartmentController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -23,10 +25,10 @@ namespace Company_MVC.Controllers
 
 
         [HttpGet] //Get : Department/index
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
          
-          var departments = _unitOfWork.DepartmentRepository.GetAll();
+          var departments = await _unitOfWork.DepartmentRepository.GetAllAsync();
 
             return View(departments);
         }
@@ -38,7 +40,7 @@ namespace Company_MVC.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(CreateDepartmentDto model)
+        public async Task<IActionResult> Create(CreateDepartmentDto model)
         { 
             if (ModelState.IsValid) //Server Side Validation 
             {
@@ -49,7 +51,7 @@ namespace Company_MVC.Controllers
                     CreateAt = model.CreateAt
 
                 };
-                var count = _unitOfWork.DepartmentRepository.Add(department);
+                var count = await _unitOfWork.DepartmentRepository.AddAsync(department);
                 if(count>0)
                 {
                     TempData["Message"] = "Employee created successfully!";
@@ -61,11 +63,11 @@ namespace Company_MVC.Controllers
         }
 
         [HttpGet]
-        public IActionResult Details (int? Id , string  viewName = "Details")
+        public async Task<IActionResult> Details (int? Id , string  viewName = "Details")
         {
             if (Id is null) return BadRequest("Invaled Id"); //Satues code = 400 
 
-            var department = _unitOfWork.DepartmentRepository.Get(Id.Value);
+            var department = await _unitOfWork.DepartmentRepository.GetAsync(Id.Value);
 
             if (department is null) return NotFound(new { SatuesCode=404 ,Message=$"Department With Id :{Id} is not found"});
 
@@ -75,7 +77,7 @@ namespace Company_MVC.Controllers
 
 
         [HttpGet]
-        public IActionResult Edit(int? id)
+        public Task<IActionResult> Edit(int? id)
         {
 
             return Details(id, "Edit");
@@ -83,13 +85,13 @@ namespace Company_MVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit([FromRoute] int id, Department department)
+        public async Task<IActionResult> Edit([FromRoute] int id, Department department)
         {
 
             
                 if (id == department.Id)
                 {
-                    var count = _unitOfWork.DepartmentRepository.Update(department);
+                    var count = await _unitOfWork.DepartmentRepository.Update(department);
                     if (count > 0)
                     {
                     TempData["Message"] = "Employee updated successfully!";
@@ -106,21 +108,21 @@ namespace Company_MVC.Controllers
 
 
         [HttpGet]
-        public IActionResult Delete(int? id)
+        public Task<IActionResult> Delete(int? id)
         {
             return Details(id, "Delete");
         }
 
 
         [HttpPost]
-     
-        public IActionResult Delete([FromRoute] int id, Department department)
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Delete([FromRoute] int id, Department department)
         {
 
            
                 if (id == department.Id)
                 {
-                    var count = _unitOfWork.DepartmentRepository.Delete(department);
+                    var count = await _unitOfWork.DepartmentRepository.Delete(department);
                     if (count > 0)
                     {
                     TempData["Message"] = "Employee deleted successfully!";
