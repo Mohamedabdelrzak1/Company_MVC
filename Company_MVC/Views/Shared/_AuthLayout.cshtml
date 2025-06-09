@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/AuthStyel.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Decorative Background Shapes -->
+    <div class="shape shape-left"></div>
+    <div class="shape shape-right"></div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <h2>@ViewData["Title"]</h2>
+        @RenderBody()
+
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        @await RenderSectionAsync("Scripts", required: false)
+    </div>
+
+</body>
+</html>
