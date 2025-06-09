@@ -10,8 +10,8 @@ namespace Company.BLL.Interfaces
 {
      public interface IEmployeeRepository : IGenericRepository<Employee>
      {
-       
-        List<Employee> GetByName(string name);
+
+         Task<List<Employee>> GetByNameAsync(string name);
         
     }
 }
