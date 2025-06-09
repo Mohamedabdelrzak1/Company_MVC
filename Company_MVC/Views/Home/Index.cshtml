@@ -31,13 +31,31 @@
         padding: 5rem;
         color: white;
     }
-</style>
 
-<!-- توهج يغطي الصفحة كلها -->
+    .explore-btn {
+        background-color: transparent;
+        color: #00ffff;
+        border: 2px solid #00ffff;
+        box-shadow: 0 5px 15px rgba(0, 255, 255, 0.4);
+        transition: all 0.3s ease-in-out;
+        transform: perspective(1px) translateZ(0);
+    }
+
+        .explore-btn:hover {
+            background-color: #00ffff;
+            color: #000;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 255, 255, 0.6);
+        }
+
+        .explore-btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 3px 10px rgba(0, 255, 255, 0.3);
+        }
+</style>
 
 <!-- تأثير خلفي سيان متوهج -->
 <div style="position: absolute; top: -200px; left: -200px; width: 600px; height: 600px; background: #00ffff; opacity: 0.1; filter: blur(100px); border-radius: 50%;"></div>
-
 
 <!-- محتوى الصفحة -->
 <div class="content">
@@ -48,9 +66,7 @@
         We are a growing company focused on organizing and managing departments and employees efficiently.
         Our simple and intuitive dashboard is designed to help small businesses like ours keep track of operations, teams, and tasks — all in one place.
     </p>
-    <a asp-controller="Home" asp-action="SystemOverview" class="btn btn-lg btn-outline-info rounded-pill px-5 py-3 fw-semibold shadow">
+    <a asp-controller="Home" asp-action="SystemOverview" class="btn btn-lg rounded-pill px-5 py-3 fw-semibold explore-btn">
         Explore Now
-    </a>
-
     </a>
 </div>

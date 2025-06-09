@@ -3,90 +3,94 @@
     ViewData["Title"] = "Delete";
 }
 
+<style>
+    .custom-readonly-sm {
+        font-size: 0.8rem;
+        padding: 0.35rem 0.6rem;
+        border-radius: 0.4rem;
+        background-color: #f8f9fa !important;
+        border: 1px solid #ced4da;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
 
-<div class="container mt-5">
-    <div class="card shadow rounded border-danger">
-        <div class="card-header bg-danger text-white">
-            <h3><i class="bi bi-trash3"></i> Delete Employee</h3>
+    .form-label {
+        font-size: 0.85rem;
+    }
+
+    .btn-sm {
+        padding: 0.35rem 0.8rem;
+        font-size: 0.85rem;
+    }
+
+    .card-header {
+        font-size: 1.2rem;
+        padding: 0.6rem 1rem;
+    }
+</style>
+
+<div class="container my-5">
+    <div class="card mx-auto shadow rounded border-danger" style="max-width: 700px;">
+        <!-- عنوان Delete Employee -->
+        <div class="card-header bg-danger text-white fw-bold d-flex align-items-center">
+            <i class="bi bi-trash3 me-2 fs-5"></i>
+            Delete Employee
         </div>
-        <div class="card-body">
-            <h5 class="mb-4 text-danger">Are you sure you want to delete this employee?</h5>
+
+        <div class="card-body px-4 py-3">
+            <h6 class="mb-3 text-danger fw-semibold">Are you sure you want to delete this employee?</h6>
             <form asp-action="Delete">
                 <input type="hidden" asp-for="Id" />
 
-                <div class="mb-3">
-                    <label asp-for="Name" class="form-label fw-bold">
-                        <i class="bi bi-person"></i> Name
-                    </label>
-                    <input asp-for="Name" class="form-control bg-light" readonly />
+                <div class="mb-2">
+                    <label asp-for="Name" class="form-label fw-bold"><i class="bi bi-person"></i> Name</label>
+                    <input asp-for="Name" class="form-control custom-readonly-sm" readonly />
                 </div>
 
-                <div class="mb-3">
-                    <label asp-for="Age" class="form-label fw-bold">
-                        <i class="bi bi-123"></i> Age
-                    </label>
-                    <input asp-for="Age" class="form-control bg-light" readonly />
+                <div class="mb-2">
+                    <label asp-for="Age" class="form-label fw-bold"><i class="bi bi-123"></i> Age</label>
+                    <input asp-for="Age" class="form-control custom-readonly-sm" readonly />
                 </div>
 
-                <div class="mb-3">
-                    <label asp-for="Email" class="form-label fw-bold">
-                        <i class="bi bi-envelope"></i> Email
-                    </label>
-                    <input asp-for="Email" class="form-control bg-light" readonly />
+                <div class="mb-2">
+                    <label asp-for="Email" class="form-label fw-bold"><i class="bi bi-envelope"></i> Email</label>
+                    <input asp-for="Email" class="form-control custom-readonly-sm" readonly />
                 </div>
 
-                <div class="mb-3">
-                    <label asp-for="Address" class="form-label fw-bold">
-                        <i class="bi bi-geo-alt"></i> Address
-                    </label>
-                    <input asp-for="Address" class="form-control bg-light" readonly />
+                <div class="mb-2">
+                    <label asp-for="Address" class="form-label fw-bold"><i class="bi bi-geo-alt"></i> Address</label>
+                    <input asp-for="Address" class="form-control custom-readonly-sm" readonly />
                 </div>
 
-                <div class="mb-3">
-                    <label asp-for="Phone" class="form-label fw-bold">
-                        <i class="bi bi-telephone"></i> Phone
-                    </label>
-                    <input asp-for="Phone" class="form-control bg-light" readonly />
+                <div class="mb-2">
+                    <label asp-for="Phone" class="form-label fw-bold"><i class="bi bi-telephone"></i> Phone</label>
+                    <input asp-for="Phone" class="form-control custom-readonly-sm" readonly />
                 </div>
 
-                <div class="mb-3">
-                    <label asp-for="Salary" class="form-label fw-bold">
-                        <i class="bi bi-cash"></i> Salary
-                    </label>
-                    <input asp-for="Salary" class="form-control bg-light" readonly />
+                <div class="mb-2">
+                    <label asp-for="Salary" class="form-label fw-bold"><i class="bi bi-cash"></i> Salary</label>
+                    <input asp-for="Salary" class="form-control custom-readonly-sm" readonly />
                 </div>
 
-                <div class="mb-3">
-                    <label asp-for="HiringDate" class="form-label fw-bold">
-                        <i class="bi bi-calendar-event"></i> Hiring Date
-                    </label>
-                    <input asp-for="HiringDate" class="form-control bg-light" readonly />
+                <div class="mb-2">
+                    <label asp-for="HiringDate" class="form-label fw-bold"><i class="bi bi-calendar-event"></i> Hiring Date</label>
+                    <input asp-for="HiringDate" class="form-control custom-readonly-sm" readonly />
                 </div>
-                <div class="mb-3">
-                    <label asp-for="CreateAt" class="form-label fw-bold">
-                        <i class="bi bi-calendar-event"></i> Hiring Date
-                    </label>
-                    <input asp-for="CreateAt" class="form-control bg-light" readonly />
-                </div>
-                <div class="form-check mb-3">
+
+                <div class="form-check mb-2">
                     <input asp-for="IsActive" class="form-check-input" type="checkbox" disabled />
-                    <label asp-for="IsActive" class="form-check-label fw-bold">
-                        <i class="bi bi-check-circle"></i> Active
-                    </label>
+                    <label asp-for="IsActive" class="form-check-label fw-bold"><i class="bi bi-check-circle"></i> Active</label>
                 </div>
 
                 <div class="form-check mb-3">
                     <input asp-for="IsDeleted" class="form-check-input" type="checkbox" disabled />
-                    <label asp-for="IsDeleted" class="form-check-label fw-bold">
-                        <i class="bi bi-trash"></i> Deleted
-                    </label>
+                    <label asp-for="IsDeleted" class="form-check-label fw-bold"><i class="bi bi-trash"></i> Deleted</label>
                 </div>
 
                 <div class="d-flex gap-2">
-                    <button type="submit" class="btn btn-danger">
+                    <button type="submit" class="btn btn-danger btn-sm">
                         <i class="bi bi-trash3-fill"></i> Delete
                     </button>
-                    <a asp-action="Index" class="btn btn-secondary">
+                    <a asp-action="Index" class="btn btn-secondary btn-sm">
                         <i class="bi bi-arrow-left-circle"></i> Back To List
                     </a>
                 </div>

@@ -1,31 +1,27 @@
-﻿@{
-    ViewData["Title"] = "System Overview";
-}
-
-<section class="container my-5">
+﻿<section class="container my-5">
     <h2 class="text-white text-center mb-5">Explore Our System</h2>
 
-    <div class="row justify-content-center">
+    <div class="row justify-content-center g-4">
         <!-- Department Card -->
-        <div class="col-md-5 mb-4">
-            <div class="card bg-dark text-white border-0 shadow-lg rounded-4 h-100 hover-effect">
-                <div class="card-body text-center p-5">
-                    <i class="bi bi-diagram-3-fill display-3 text-info mb-4"></i>
-                    <h4 class="card-title mb-3">Departments</h4>
+        <div class="col-md-5">
+            <div class="card system-card text-white text-center h-100">
+                <div class="card-body p-5">
+                    <i class="bi bi-diagram-3-fill display-3 icon-glow mb-4"></i>
+                    <h4 class="card-title mb-3 fw-bold">Departments</h4>
                     <p class="card-text">Manage and view all departments in your organization.</p>
-                    <a href="/Department/Index" class="btn btn-outline-info rounded-pill mt-3 px-4 py-2">Go to Departments</a>
+                    <a href="/Department/Index" class="btn neon-btn">Go to Departments</a>
                 </div>
             </div>
         </div>
 
         <!-- Employee Card -->
-        <div class="col-md-5 mb-4">
-            <div class="card bg-dark text-white border-0 shadow-lg rounded-4 h-100 hover-effect">
-                <div class="card-body text-center p-5">
-                    <i class="bi bi-people-fill display-3 text-info mb-4"></i>
-                    <h4 class="card-title mb-3">Employees</h4>
+        <div class="col-md-5">
+            <div class="card system-card text-white text-center h-100">
+                <div class="card-body p-5">
+                    <i class="bi bi-people-fill display-3 icon-glow mb-4"></i>
+                    <h4 class="card-title mb-3 fw-bold">Employees</h4>
                     <p class="card-text">View, add, and manage employees with ease.</p>
-                    <a href="/Employee/Index" class="btn btn-outline-info rounded-pill mt-3 px-4 py-2">Go to Employees</a>
+                    <a href="/Employee/Index" class="btn neon-btn">Go to Employees</a>
                 </div>
             </div>
         </div>
@@ -33,8 +29,37 @@
 </section>
 
 <style>
-    .hover-effect:hover {
-        transform: scale(1.03);
-        transition: 0.3s ease;
+    .system-card {
+        background: linear-gradient(145deg, #1e1e1e, #2c2c2c);
+        border: none;
+        border-radius: 1rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
+
+        .system-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 255, 255, 0.2);
+        }
+
+    .icon-glow {
+        color: #00eaff;
+        text-shadow: 0 0 10px #00eaff, 0 0 20px #00eaff;
+    }
+
+    .neon-btn {
+        color: #00eaff;
+        border: 1px solid #00eaff;
+        border-radius: 30px;
+        padding: 10px 30px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        background-color: transparent;
+    }
+
+        .neon-btn:hover {
+            background-color: #00eaff;
+            color: #000;
+            box-shadow: 0 0 10px #00eaff, 0 0 20px #00eaff;
+        }
 </style>
