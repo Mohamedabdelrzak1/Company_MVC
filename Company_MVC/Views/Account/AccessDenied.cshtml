@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Access Denied</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+
+    <!-- W3.CSS -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <style>
+        body {
+            margin: 0;
+            background: linear-gradient(145deg, #0f2027, #203a43, #2c5364);
+            color: #fff;
+            font-family: 'Orbitron', sans-serif;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .access-container {
+            text-align: center;
+            transform: perspective(1000px) rotateX(5deg);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        h1 {
+            font-size: 5rem;
+            color: #ff4d4d;
+            text-shadow: 0 0 15px #ff4d4d, 0 0 30px rgba(255, 0, 0, 0.5);
+        }
+
+        h3 {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            color: #ccc;
+            text-shadow: 0 0 5px rgba(255,255,255,0.1);
+        }
+
+        h6 {
+            font-size: 1rem;
+            color: #888;
+            text-shadow: 0 0 2px rgba(255,255,255,0.2);
+        }
+
+        .glow {
+            font-size: 2rem;
+            color: #fff;
+            text-shadow: 0 0 10px #ff4d4d, 0 0 20px #ff1a1a, 0 0 40px #ff1a1a;
+        }
+
+        hr {
+            border: none;
+            height: 2px;
+            background: #ff4d4d;
+            width: 50%;
+            margin: 20px auto;
+            box-shadow: 0 0 15px #ff4d4d;
+        }
+
+        
+
+        {
+            transform: perspective(1000px) rotateX(5deg) translateY(0px);
+        }
+
+        50% {
+            transform: perspective(1000px) rotateX(5deg) translateY(-15px);
+        }
+
+        }
+    </style>
+</head>
+<body>
+    <div class="access-container">
+        <h1 class="w3-animate-top"><code>Access Denied</code></h1>
+        <hr class="w3-animate-left">
+        <h3 class="w3-animate-right">You don’t have permission to view this site.</h3>
+        <div class="glow w3-animate-zoom">🚫 🚫 🚫</div>
+        <h6 class="w3-animate-zoom">Error code: 403 Forbidden</h6>
+    </div>
+</body>
+</html>
+

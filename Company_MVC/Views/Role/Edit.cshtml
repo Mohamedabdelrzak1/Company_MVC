@@ -1,0 +1,51 @@
+﻿@model RoleToReturnDto
+
+@{
+    ViewData["Title"] = "Edit Role";
+}
+
+<div class="container mt-5">
+    <div class="card shadow rounded border-warning">
+        <div class="card-header bg-warning text-white">
+            <h3 class="mb-0">
+                <i class="bi bi-pencil-square"></i> Edit Role
+            </h3>
+        </div>
+
+        <div class="card-body">
+            <form asp-action="Edit" method="post">
+                <input asp-for="Id" type="hidden" />
+
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label fw-bold">
+                        <i class="bi bi-person-badge"></i> Role Name
+                    </label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <!-- الأزرار كلها جنب بعض هنا -->
+                <div class="d-flex gap-2 mb-4">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-save"></i> Save Changes
+                    </button>
+
+                    <a asp-action="Index" class="btn btn-secondary">
+                        <i class="bi bi-arrow-left-circle"></i> Back To List
+                    </a>
+
+                    <a asp-action="AddOrRemoveUsers"
+                       asp-route-roleId="@Model.Id"
+                       class="btn btn-success d-flex align-items-center gap-2">
+                        <i class="bi bi-people-fill fs-5"></i>
+                        Add or Remove Users
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section ValidationSection {
+    <partial name="_ValidationScriptsPartial" />
+}

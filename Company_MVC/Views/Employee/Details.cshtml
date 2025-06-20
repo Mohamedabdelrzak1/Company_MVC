@@ -3,81 +3,94 @@
     ViewData["Title"] = "Employee Details";
 }
 
-<div class="container mt-5">
-    <div class="card shadow rounded border-info">
-        <div class="card-header bg-info text-white">
-            <h3><i class="bi bi-eye"></i> Employee Details</h3>
+<style>
+    .custom-readonly-sm {
+        font-size: 0.8rem;
+        padding: 0.35rem 0.6rem;
+        border-radius: 0.4rem;
+        background-color: #f8f9fa !important;
+        border: 1px solid #ced4da;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    .form-label {
+        font-size: 0.85rem;
+    }
+
+    .card-header {
+        font-size: 1.2rem;
+        padding: 0.6rem 1rem;
+    }
+
+    .btn-sm {
+        padding: 0.35rem 0.8rem;
+        font-size: 0.85rem;
+    }
+</style>
+
+<div class="container my-5">
+    <div class="card mx-auto shadow rounded border-info" style="max-width: 700px;">
+        <div class="card-header bg-info text-white fw-bold d-flex align-items-center">
+            <i class="bi bi-eye me-2 fs-5"></i>
+            Employee Details
         </div>
-        <div class="card-body">
 
-            <div class="mb-3">
-                <label class="form-label fw-bold">
-                    <i class="bi bi-person"></i> Name
-                </label>
-                <input class="form-control bg-light" value="@Model.Name" readonly />
+        <div class="card-body px-4 py-3">
+            <div class="mb-2">
+                <label class="form-label fw-bold"><i class="bi bi-person"></i> Name</label>
+                <input class="form-control custom-readonly-sm" value="@Model.Name" readonly />
             </div>
 
-            <div class="mb-3">
-                <label class="form-label fw-bold">
-                    <i class="bi bi-123"></i> Age
-                </label>
-                <input class="form-control bg-light" value="@Model.Age" readonly />
+            <div class="mb-2">
+                <label class="form-label fw-bold"><i class="bi bi-123"></i> Age</label>
+                <input class="form-control custom-readonly-sm" value="@Model.Age" readonly />
             </div>
 
-            <div class="mb-3">
-                <label class="form-label fw-bold">
-                    <i class="bi bi-envelope"></i> Email
-                </label>
-                <input class="form-control bg-light" value="@Model.Email" readonly />
+            <div class="mb-2">
+                <label class="form-label fw-bold"><i class="bi bi-envelope"></i> Email</label>
+                <input class="form-control custom-readonly-sm" value="@Model.Email" readonly />
             </div>
 
-            <div class="mb-3">
-                <label class="form-label fw-bold">
-                    <i class="bi bi-geo-alt"></i> Address
-                </label>
-                <input class="form-control bg-light" value="@Model.Address" readonly />
+            <div class="mb-2">
+                <label class="form-label fw-bold"><i class="bi bi-geo-alt"></i> Address</label>
+                <input class="form-control custom-readonly-sm" value="@Model.Address" readonly />
             </div>
 
-            <div class="mb-3">
-                <label class="form-label fw-bold">
-                    <i class="bi bi-telephone"></i> Phone
-                </label>
-                <input class="form-control bg-light" value="@Model.Phone" readonly />
+            <div class="mb-2">
+                <label class="form-label fw-bold"><i class="bi bi-telephone"></i> Phone</label>
+                <input class="form-control custom-readonly-sm" value="@Model.Phone" readonly />
             </div>
 
-            <div class="mb-3">
-                <label class="form-label fw-bold">
-                    <i class="bi bi-cash"></i> Salary
-                </label>
-                <input class="form-control bg-light" value="@Model.Salary" readonly />
+            <div class="mb-2">
+                <label class="form-label fw-bold"><i class="bi bi-cash"></i> Salary</label>
+                <input class="form-control custom-readonly-sm" value="@Model.Salary" readonly />
             </div>
 
-            <div class="mb-3">
-                <label class="form-label fw-bold">
-                    <i class="bi bi-calendar-event"></i> Hiring Date
-                </label>
-                <input class="form-control bg-light" value="@Model.HiringDate.ToShortDateString()" readonly />
+            <div class="mb-2">
+                <label class="form-label fw-bold"><i class="bi bi-calendar-event"></i> Hiring Date</label>
+                <input class="form-control custom-readonly-sm" value="@Model.HiringDate.ToShortDateString()" readonly />
             </div>
 
-            <div class="form-check mb-3">
+            <div class="mb-2">
+                <label class="form-label fw-bold"><i class="bi bi-diagram-3-fill"></i> Department</label>
+                <input class="form-control custom-readonly-sm" value="@Model.Department?.Name" readonly />
+            </div>
+
+            <div class="form-check mb-2">
                 <input class="form-check-input" type="checkbox" @(Model.IsActive ? "checked" : "") disabled />
-                <label class="form-check-label fw-bold">
-                    <i class="bi bi-check-circle"></i> Active
-                </label>
+                <label class="form-check-label fw-bold"><i class="bi bi-check-circle"></i> Active</label>
             </div>
 
             <div class="form-check mb-3">
                 <input class="form-check-input" type="checkbox" @(Model.IsDeleted ? "checked" : "") disabled />
-                <label class="form-check-label fw-bold">
-                    <i class="bi bi-trash"></i> Deleted
-                </label>
+                <label class="form-check-label fw-bold"><i class="bi bi-trash"></i> Deleted</label>
             </div>
 
             <div class="d-flex gap-2">
-                <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-success">
+                <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-success btn-sm">
                     <i class="bi bi-pencil-square"></i> Edit
                 </a>
-                <a asp-action="Index" class="btn btn-secondary">
+                <a asp-action="Index" class="btn btn-secondary btn-sm">
                     <i class="bi bi-arrow-left-circle"></i> Back To List
                 </a>
             </div>

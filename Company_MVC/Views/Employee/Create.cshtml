@@ -4,97 +4,122 @@
     ViewData["Title"] = "Create Employee";
 }
 
-<div class="container mt-5">
-    <div class="card shadow rounded border-primary">
-        <div class="card-header bg-primary text-white">
-            <h3><i class="bi bi-plus-circle"></i> Create New Employee</h3>
+<div class="container my-5">
+    <div class="card mx-auto shadow rounded border-0" style="max-width: 700px;">
+        <!-- عنوان Create New Employee -->
+        <div class="card-header bg-primary text-white fw-bold fs-4 d-flex align-items-center">
+            <i class="bi bi-plus-circle me-2 fs-4"></i>
+            Create New Employee
         </div>
-        <div class="card-body">
-        <form asp-action="Create">
-            <div class="mb-3">
-                <label asp-for="Name" class="form-label fw-bold">
-                    <i class="bi bi-person"></i> Name
-                </label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
 
-            <div class="mb-3">
-                <label asp-for="Age" class="form-label fw-bold">
-                    <i class="bi bi-123"></i> Age
-                </label>
-                <input asp-for="Age" class="form-control" />
-                <span asp-validation-for="Age" class="text-danger"></span>
-            </div>
+        <div class="card-body px-4 py-3">
+            <form asp-action="Create" enctype="multipart/form-data">
+                <div class="form-group mb-2">
+                    <label asp-for="Name" class="form-label fw-bold"><i class="bi bi-person"></i> Name</label>
+                    <input asp-for="Name" class="form-control custom-input-sm" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
 
-            <div class="mb-3">
-                <label asp-for="Email" class="form-label fw-bold">
-                    <i class="bi bi-envelope"></i> Email
-                </label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
+                <div class="form-group mb-2">
+                    <label asp-for="Age" class="form-label fw-bold"><i class="bi bi-123"></i> Age</label>
+                    <input asp-for="Age" class="form-control custom-input-sm" />
+                    <span asp-validation-for="Age" class="text-danger"></span>
+                </div>
 
-            <div class="mb-3">
-                <label asp-for="Address" class="form-label fw-bold">
-                    <i class="bi bi-geo-alt"></i> Address
-                </label>
-                <input asp-for="Address" class="form-control" />
-                <span asp-validation-for="Address" class="text-danger"></span>
-            </div>
+                <div class="form-group mb-2">
+                    <label asp-for="Email" class="form-label fw-bold"><i class="bi bi-envelope"></i> Email</label>
+                    <input asp-for="Email" class="form-control custom-input-sm" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
 
-            <div class="mb-3">
-                <label asp-for="Phone" class="form-label fw-bold">
-                    <i class="bi bi-telephone"></i> Phone
-                </label>
-                <input asp-for="Phone" class="form-control" />
-                <span asp-validation-for="Phone" class="text-danger"></span>
-            </div>
+                <div class="form-group mb-2">
+                    <label asp-for="Address" class="form-label fw-bold"><i class="bi bi-geo-alt"></i> Address</label>
+                    <input asp-for="Address" class="form-control custom-input-sm" />
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
 
-            <div class="mb-3">
-                <label asp-for="Salary" class="form-label fw-bold">
-                    <i class="bi bi-cash"></i> Salary
-                </label>
-                <input asp-for="Salary" class="form-control" />
-                <span asp-validation-for="Salary" class="text-danger"></span>
-            </div>
+                <div class="form-group mb-2">
+                    <label asp-for="Phone" class="form-label fw-bold"><i class="bi bi-telephone"></i> Phone</label>
+                    <input asp-for="Phone" class="form-control custom-input-sm" />
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
 
-            <div class="mb-3">
-                <label asp-for="HiringDate" class="form-label fw-bold">
-                    <i class="bi bi-calendar-event"></i> Hiring Date
-                </label>
-                <input asp-for="HiringDate" class="form-control" type="date" />
-                <span asp-validation-for="HiringDate" class="text-danger"></span>
-            </div>
+                <div class="form-group mb-2">
+                    <label asp-for="Salary" class="form-label fw-bold"><i class="bi bi-cash"></i> Salary</label>
+                    <input asp-for="Salary" class="form-control custom-input-sm" />
+                    <span asp-validation-for="Salary" class="text-danger"></span>
+                </div>
 
-            <div class="form-check mb-3">
-                <input asp-for="IsActive" class="form-check-input" type="checkbox" />
-                <label asp-for="IsActive" class="form-check-label fw-bold">
-                    <i class="bi bi-check-circle"></i> Active
-                </label>
-            </div>
+                <div class="form-group mb-2">
+                    <label asp-for="HiringDate" class="form-label fw-bold"><i class="bi bi-calendar-event"></i> Hiring Date</label>
+                    <input asp-for="HiringDate" class="form-control custom-input-sm" type="date" />
+                    <span asp-validation-for="HiringDate" class="text-danger"></span>
+                </div>
 
-            <div class="form-check mb-3">
-                <input asp-for="IsDeleted" class="form-check-input" type="checkbox" />
-                <label asp-for="IsDeleted" class="form-check-label fw-bold">
-                    <i class="bi bi-trash"></i> Deleted
-                </label>
-            </div>
+                <div class="form-check mb-2">
+                    <input asp-for="IsActive" class="form-check-input" type="checkbox" />
+                    <label asp-for="IsActive" class="form-check-label fw-bold"><i class="bi bi-check-circle"></i> Active</label>
+                </div>
 
-            <div class="d-flex gap-2">
-                <button type="submit" class="btn btn-primary">
-                    <i class="bi bi-plus-circle"></i> Create
-                </button>
-                <a asp-action="Index" class="btn btn-secondary">
-                    <i class="bi bi-arrow-left-circle"></i> Back To List
-                </a>
-            </div>
-        </form>
+                <div class="form-check mb-2">
+                    <input asp-for="IsDeleted" class="form-check-input" type="checkbox" />
+                    <label asp-for="IsDeleted" class="form-check-label fw-bold"><i class="bi bi-trash"></i> Deleted</label>
+                </div>
+
+                <div class="form-group mb-2">
+                    <label asp-for="DepartmentId" class="form-label fw-bold text-dark d-flex align-items-center">
+                        <i class="bi bi-diagram-3-fill me-2"></i>
+                        @Html.DisplayNameFor(m => m.DepartmentId)
+                    </label>
+                    <select asp-for="DepartmentId" class="form-select custom-input-sm" asp-items="@(ViewData["DepartmentList"] as SelectList)">
+                        <option value="">-- Select Department --</option>
+                    </select>
+                    <span asp-validation-for="DepartmentId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Image" class="form-label fw-bold"><i class="bi bi-image"></i> Image</label>
+                    <input asp-for="Image" type="file" class="form-control custom-input-sm" />
+                    <span asp-validation-for="Image" class="text-danger"></span>
+                </div>
+
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-primary btn-sm">
+                        <i class="bi bi-plus-circle"></i> Create
+                    </button>
+                    <a asp-action="Index" class="btn btn-secondary btn-sm">
+                        <i class="bi bi-arrow-left-circle"></i> Back To List
+                    </a>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
-    @section ValidationSection {
-        <partial name="_ValidationScriptsPartial" />
+
+
+@section ValidationSection {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+<style>
+    .custom-input-sm, .form-select.custom-input-sm {
+        font-size: 0.8rem;
+        padding: 0.35rem 0.6rem;
+        border-radius: 0.4rem;
     }
 
- 
+    .card-header {
+        font-size: 1.2rem;
+        padding: 0.6rem 1rem;
+    }
 
+    .form-label {
+        font-size: 0.85rem;
+    }
+
+    .btn-sm {
+        padding: 0.35rem 0.8rem;
+        font-size: 0.85rem;
+    }
+
+</style>
