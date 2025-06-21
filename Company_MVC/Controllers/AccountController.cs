@@ -12,7 +12,10 @@ using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pag
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Security.Claims;
+
 using Microsoft.AspNetCore.Identity.UI.Services;
+
+
 
 namespace Company_MVC.Controllers
 {
@@ -50,9 +53,6 @@ namespace Company_MVC.Controllers
                 {
                     user = await _userManager.Users.FirstOrDefaultAsync(u => u.Email.ToLower() == model.Email.ToLower());
                     if (user is null)
-                    {
-
-                       
 
                         //Register
 
@@ -96,6 +96,9 @@ namespace Company_MVC.Controllers
                             _mailingService.SendEmail(email);
 
                             return RedirectToAction(nameof(CheckYourEmail));
+
+                            return RedirectToAction("SignIn");
+
                         }
 
                         foreach (var error in result.Errors)
@@ -108,9 +111,10 @@ namespace Company_MVC.Controllers
                 }
 
                 ModelState.AddModelError("", "Invalid  SignUp !!");
-            }
-            return View(model);
+                return View(model);
         }
+           
+        
 
         #endregion
 
@@ -195,8 +199,6 @@ namespace Company_MVC.Controllers
                         protocol: Request.Scheme      // << ده بيخلي الرابط absolute
                     );
 
-                    
-
                     // create email content and send it
                     var email = new Email()
                     {
@@ -217,6 +219,7 @@ namespace Company_MVC.Controllers
             ModelState.AddModelError("", "Invalid Reset Password !!");
             return View("ForgetPassword");
         }
+
 
         [HttpGet]
         public async Task<IActionResult> ConfirmEmail(string userId, string token)
@@ -242,15 +245,19 @@ namespace Company_MVC.Controllers
 
 
 
+
         public IActionResult CheckYourEmail()
         {
             return View();
         }
 
+
+
         public IActionResult AccountActivated()
         {
             return View();
         }
+
 
         #endregion
 
