@@ -227,7 +227,8 @@ namespace Company_MVC.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+
+        
         public async Task<IActionResult> AddOrRemoveUsers(List<UsersInRoleViewDto> model, string roleId)
         {
             var role = await _roleManager.FindByIdAsync(roleId);
