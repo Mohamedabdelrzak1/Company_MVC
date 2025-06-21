@@ -147,7 +147,7 @@ namespace Company_MVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
+        
         public async Task<IActionResult> Edit(int id, CreateEmployeeDto model)
         {
             if (!ModelState.IsValid)
@@ -197,7 +197,7 @@ namespace Company_MVC.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
+        
         public async Task<IActionResult> Delete(int id, Employee employee)
         {
             if (id != employee.Id)

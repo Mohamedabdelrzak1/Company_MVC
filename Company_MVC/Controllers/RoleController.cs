@@ -228,8 +228,7 @@ namespace Company_MVC.Controllers
 
         [HttpPost]
 
-        
-        public async Task<IActionResult> AddOrRemoveUsers(List<UsersInRoleViewDto> model, string roleId)
+       public async Task<IActionResult> AddOrRemoveUsers(List<UsersInRoleViewDto> model, string roleId)
         {
             var role = await _roleManager.FindByIdAsync(roleId);
             if (role == null) return NotFound();
