@@ -13,6 +13,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Security.Claims;
 
+using Microsoft.AspNetCore.Identity.UI.Services;
+
+
+
 namespace Company_MVC.Controllers
 {
     public class AccountController : Controller
@@ -49,7 +53,7 @@ namespace Company_MVC.Controllers
                 {
                     user = await _userManager.Users.FirstOrDefaultAsync(u => u.Email.ToLower() == model.Email.ToLower());
                     if (user is null)
-                    {
+
                         //Register
 
                         user = new AppUser()
@@ -66,7 +70,35 @@ namespace Company_MVC.Controllers
                         if (result.Succeeded)
                         {
                             //Confirmition  To SendEmail
+
+                            // Generate email confirmation token
+                            var confirmEmailToken = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+
+                            // Create the confirmation URL
+                            var confirmationUrl = Url.Action(
+                                "ConfirmEmail",               // Action name
+                                "Account",                    // Controller name
+                                new { userId = user.Id, token = confirmEmailToken },
+                                protocol: Request.Scheme
+                            );
+
+                          
+
+                            // Create the email
+                            var email = new Email()
+                            {
+                                To = user.Email,
+                                Subject = "Confirm Your Email",
+                                Body = $"Please confirm your email by clicking this link: <a href='{confirmationUrl}'>Click here</a>"
+                            };
+
+                            // Send the email
+                            _mailingService.SendEmail(email);
+
+                            return RedirectToAction(nameof(CheckYourEmail));
+
                             return RedirectToAction("SignIn");
+
                         }
 
                         foreach (var error in result.Errors)
@@ -188,11 +220,42 @@ namespace Company_MVC.Controllers
         }
 
 
+        [HttpGet]
+        public async Task<IActionResult> ConfirmEmail(string userId, string token)
+        {
+            if (userId == null || token == null)
+                return BadRequest();
+
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+                return NotFound();
+
+            var result = await _userManager.ConfirmEmailAsync(user, token);
+            if (result.Succeeded)
+            {
+                var userName = user.UserName; // أو user.FirstName + user.LastName حسب نظامك
+
+                ViewData["UserName"] = userName;
+                return View("AccountActivated");
+            }
+
+            return View("Error");
+        }
+
+
+
+
         public IActionResult CheckYourEmail()
         {
             return View();
         }
 
+
+
+        public IActionResult AccountActivated()
+        {
+            return View();
+        }
 
 
         #endregion
