@@ -4,11 +4,15 @@ namespace Company_MVC.Dtos
 {
     public class ResetPasswordDto
     {
-        [Required(ErrorMessage = "NewPassword is required")]
+
+
+        [Required(ErrorMessage = "Password Is Required!")]
         [DataType(DataType.Password)]
         public string NewPassword { get; set; }
+
+        [Required(ErrorMessage = "Confirm Password Is Required!")]
         [DataType(DataType.Password)]
-        [Compare(nameof(NewPassword), ErrorMessage = "Passwords do not match")]
+        [Compare(nameof(NewPassword), ErrorMessage = "Confirm Password dose not match Password")]
         public string ConfirmPassword { get; set; }
     }
 }
