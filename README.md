@@ -52,7 +52,6 @@ Email-based password recovery via SMTP.
 
 Add UI screenshots here if available.
 
-ج
 📊 Future Enhancements
 
 Advanced dashboard with charts/analytics.
